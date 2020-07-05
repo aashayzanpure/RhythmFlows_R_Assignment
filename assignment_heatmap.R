@@ -19,6 +19,18 @@ print(mean(BostonHousing$crim))
 correlation_matrix <- cor(BostonHousing)
 melted_correlation_matrix <- melt(correlation_matrix)
 ggplot(data = melted_correlation_matrix, aes(x = Var1, y = Var2, fill = value)) + geom_tile() +
-  scale_fill_distiller(palette = "RdPu")
+  scale_fill_distiller(palette = "Spectral")
 
 #linear regression model
+linear_model <- lm(medv ~ ., BostonHousing)
+summary(x)
+result <- predict(linear_model, BostonHousing)
+result
+difference <- (result - BostonHousing$medv)
+
+MSE <- sum(difference^2)/length(BostonHousing$medv)
+MAE <- sum(abs(difference))/length(BostonHousing$medv)
+RSE <- sqrt(MSE)
+print(MSE)
+print(MAE)
+print(RSE)
